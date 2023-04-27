@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createMovieController,
+  deleteMoviesController,
   listMoviesController,
   updateMoviesController,
 } from "../controllers/movies.controller";
@@ -29,5 +30,7 @@ movieRoutes.patch(
   ensureMovieExistsMiddleware,
   updateMoviesController
 );
+
+movieRoutes.delete("/:id", deleteMoviesController);
 
 export default movieRoutes;

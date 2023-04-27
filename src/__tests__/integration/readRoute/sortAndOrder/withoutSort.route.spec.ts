@@ -1,12 +1,12 @@
-import supertest from 'supertest';
-import { DataSource } from 'typeorm';
-import app from '../../../../app';
-import { AppDataSource } from '../../../../data-source';
-import { readRouteMock } from '../../../mocks';
+import supertest from "supertest";
+import { DataSource } from "typeorm";
+import app from "../../../../app";
+import { AppDataSource } from "../../../../data-source";
+import { readRouteMock } from "../../../mocks";
 
-describe('Tests on route: GET /movies. Must be able to list all movies.', () => {
+describe("Tests on route: GET /movies. Must be able to list all movies.", () => {
   let connection: DataSource;
-  const baseUrl: string = '/movies';
+  const baseUrl: string = "/movies";
   let readRoutePaginationMocks: { [key: string]: any };
 
   beforeAll(async () => {
@@ -22,7 +22,7 @@ describe('Tests on route: GET /movies. Must be able to list all movies.', () => 
     await connection.destroy();
   });
 
-  it('Without query parameters', async () => {
+  it("Without query parameters", async () => {
     const response = await supertest(app).get(baseUrl);
 
     const expectResults = {
@@ -37,7 +37,7 @@ describe('Tests on route: GET /movies. Must be able to list all movies.', () => 
   });
 
   it("Query parameters: 'order' equals 'asc' and without 'sort'", async () => {
-    const response = await supertest(app).get(baseUrl + '?order=asc');
+    const response = await supertest(app).get(baseUrl + "?order=asc");
 
     const expectResults = {
       status: 200,
@@ -51,7 +51,7 @@ describe('Tests on route: GET /movies. Must be able to list all movies.', () => 
   });
 
   it("Query parameters: 'order' equals 'desc' and without 'sort'", async () => {
-    const response = await supertest(app).get(baseUrl + '?order=desc');
+    const response = await supertest(app).get(baseUrl + "?order=desc");
 
     const expectResults = {
       status: 200,

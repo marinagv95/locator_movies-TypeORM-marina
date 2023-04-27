@@ -4,10 +4,10 @@ import listMovieService from "../services/movies/listMovies.service";
 import {
   IMovie,
   IMovieRequest,
-  IMovieResponse,
   IMovieUpdateRequest,
 } from "../interfaces/movies.interface";
 import updateMoviesService from "../services/movies/updateMovies.services";
+import deleteMovieService from "../services/movies/deleteMovies.services";
 
 const createMovieController = async (
   req: Request,
@@ -40,4 +40,18 @@ const updateMoviesController = async (
   return res.json(newMovieData);
 };
 
-export { createMovieController, listMoviesController, updateMoviesController };
+const deleteMoviesController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const movieId: number = parseInt(req.params.id);
+  await deleteMovieService(movieId);
+  return res.status(204).json();
+};
+
+export {
+  createMovieController,
+  listMoviesController,
+  updateMoviesController,
+  deleteMoviesController,
+};

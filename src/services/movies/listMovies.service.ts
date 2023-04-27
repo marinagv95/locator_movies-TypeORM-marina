@@ -24,7 +24,6 @@ const listMovieService = async (
   }
 
   const orderOption = order === "desc" ? "DESC" : "ASC";
-
   let sortColumn = "id";
 
   if (sort === "price") {
