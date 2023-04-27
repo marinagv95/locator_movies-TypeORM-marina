@@ -23,20 +23,21 @@ const listMovieService = async (
     page = 1;
   }
 
-  const orderOption = order === "desc" ? "DESC" : "ASC";
-  let sortColumn = "id";
+  let orderOption = order === "desc" ? "DESC" : "ASC";
 
   if (sort === "price") {
-    sortColumn = "price";
+    sort = "price";
   } else if (sort === "duration") {
-    sortColumn = "duration";
+    sort = "duration";
+  } else {
+    (sort = "id"), (orderOption = "ASC");
   }
 
   const movies = await movieRepository.find({
     skip: (page - 1) * perPage,
     take: perPage,
     order: {
-      [sortColumn]: orderOption,
+      [sort]: orderOption,
     },
   });
 

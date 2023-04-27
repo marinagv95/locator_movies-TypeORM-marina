@@ -20,7 +20,6 @@ const updateMoviesService = async (
   });
   await movieRepository.save(newMovieData);
 
-  console.log(newMovieData);
   const returnMovie: IMovie = movieSchema.parse(newMovieData);
   return returnMovie;
 };
